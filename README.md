@@ -1,1 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GPS 掃描中…</title>
+<style>
+body{
+  background:#000;
+  color:#0f0;
+  font-family: monospace;
+  text-align:center;
+  padding:30px;
+}
+#log{
+  margin-top:20px;
+  white-space:pre-line;
+  font-size:18px;
+  line-height:1.6;
+}
+.blink{
+  animation: blink 1s infinite;
+}
+@keyframes blink{
+  50%{opacity:0;}
+}
+</style>
+</head>
+<body>
 
+<h2 class="blink">🔍 系統正在掃描你的手機…</h2>
+<div id="log">初始化系統中…</div>
+
+<script>
+let lines=[
+  "正在連接全球衛星…",
+  "下載地圖資料…完成",
+  "GPS 精準度校準…完成",
+  "偵測手機品牌…完成",
+  "分析使用者年齡：偵測中…",
+  "看起來…你可能是人類 🤔",
+  "臉部辨識：帥度過高⚠",
+  "系統無法承受你的魅力",
+  "結論：\n👉 你是全場最帥的那位 😎🔥"
+];
+
+let i=0;
+function show(){
+  document.getElementById("log").innerText = lines.slice(0,i+1).join("\n");
+  if(i<lines.length-1){
+    i++;
+    setTimeout(show,1500);
+  }else{
+    try{ navigator.vibrate(300); }catch(e){} // 震一下比較帶感
+  }
+}
+show();
+</script>
+
+</body>
+</html>
